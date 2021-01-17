@@ -1,0 +1,26 @@
+- name: Create directories
+  file:
+    path: "{{ grafana_path }}/{{ item }}"
+    state: directory
+    owner: "{{ account.user }}"
+    group: "{{ account.user }}"
+  loop:
+    - provisioning/datasources
+  become: yes
+
+- name: Template configuration
+  template:
+    src: "{{ item.src }}.j2"
+    dest: "{{ grafana_path }}/{{ item.path }}{{ item.src }}"
+  loop:
+    - src: docker-compose.yml
+      path: ""
+    - src: sources.yml
+      path: provisioning/datasources/
+  notify: Restart Grafana
+
+- name: Start Grafana
+  community.general.docker_compose:
+    project_src: "{{ grafana_path }}"
+    state: present
+  become: yes

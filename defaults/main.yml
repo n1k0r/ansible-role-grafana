@@ -1,0 +1,2 @@
+grafana_service_dir: grafana
+grafana_path: "{{ services_path }}/{{ grafana_service_dir }}"

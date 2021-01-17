@@ -1,0 +1,6 @@
+- name: Restart Grafana
+  community.general.docker_compose:
+    project_src: "{{ grafana_path }}"
+    state: present
+    restarted: yes
+  become: yes

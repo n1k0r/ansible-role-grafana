@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  grafana:
+    image: grafana/grafana:7.3.7
+    restart: always
+    user: "0"
+    network_mode: "host"
+    environment:
+      - GF_SERVER_HTTP_PORT={{ grafana.port }}
+      - GF_SECURITY_ADMIN_USER={{ grafana.user }}
+      - GF_SECURITY_ADMIN_PASSWORD={{ grafana.password }}
+      - GF_INSTALL_PLUGINS={{ grafana.plugins }}
+      - GF_ANALYTICS_REPORTING_ENABLED=false
+      - GF_ANALYTICS_CHECK_FOR_UPDATES=false
+      - GF_SECURITY_DISABLE_GRAVATAR=true
+    volumes:
+      - ./data:/var/lib/grafana
+      - ./provisioning:/etc/grafana/provisioning

@@ -1,0 +1,15 @@
+apiVersion: 1
+
+datasources:
+{% if "source" in grafana %}
+  - name: InfluxDB v2
+    type: influxdb
+    access: proxy
+    url: {% if "ssl" in grafana.source and telegraf.source.ssl %}https{% else %}http{% endif %}://{{ grafana.source.host }}:{{ grafana.source.port }}
+    jsonData:
+      version: Flux
+      organization: {{ grafana.source.org }}
+      defaultBucket: {{ grafana.source.bucket }}
+    secureJsonData:
+      token: {{ grafana.source.token }}
+{% endif %}
