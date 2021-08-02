@@ -4,6 +4,7 @@
 
 ```yaml
 grafana:
+  version: 8.0.6
   port: 3000
   user: user
   password: userpass
