@@ -8,6 +8,7 @@ grafana:
   port: 3000
   user: user
   password: userpass
+  root_url: https://stats.example.com/
   plugins: grafana-clock-panel,grafana-simple-json-datasource
   source:
     host: 127.0.0.1

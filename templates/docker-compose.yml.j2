@@ -14,6 +14,9 @@ services:
       - GF_ANALYTICS_REPORTING_ENABLED=false
       - GF_ANALYTICS_CHECK_FOR_UPDATES=false
       - GF_SECURITY_DISABLE_GRAVATAR=true
+{% if grafana.root_url is defined %}
+      - GF_SERVER_ROOT_URL={{ grafana.root_url }}
+{% endif %}
     volumes:
       - ./data:/var/lib/grafana
       - ./provisioning:/etc/grafana/provisioning
