@@ -6,6 +6,7 @@ datasources:
     type: influxdb
     access: proxy
     url: {% if "ssl" in grafana.source and telegraf.source.ssl %}https{% else %}http{% endif %}://{{ grafana.source.host }}:{{ grafana.source.port }}
+    isDefault: true
     jsonData:
       version: Flux
       organization: {{ grafana.source.org }}
