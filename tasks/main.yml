@@ -1,12 +1,7 @@
 - name: Create directories
   file:
-    path: "{{ grafana_path }}/{{ item }}"
+    path: "{{ grafana_path }}/provisioning/datasources"
     state: directory
-    owner: "{{ account.user }}"
-    group: "{{ account.user }}"
-  loop:
-    - provisioning/datasources
-  become: yes
 
 - name: Template configuration
   template:
@@ -23,4 +18,3 @@
   community.general.docker_compose:
     project_src: "{{ grafana_path }}"
     state: present
-  become: yes
