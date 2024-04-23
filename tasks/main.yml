@@ -15,6 +15,6 @@
   notify: Restart Grafana
 
 - name: Start Grafana
-  community.general.docker_compose:
+  community.docker.docker_compose_v2:
     project_src: "{{ grafana_path }}"
     state: present
